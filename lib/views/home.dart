@@ -1055,15 +1055,41 @@ class HomeView extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         var mydata =
                             productController.newArrivalProducts[index];
-                        return NewArrivalProductWidget(
-                          image: mydata.image,
-                          name: mydata.name,
-                          description: mydata.description,
-                          rating: mydata.rating,
-                          reviews: mydata.reviews,
-                          price: mydata.price,
-                          discountPercentage: mydata.discountPercent,
-                          sellingPrice: mydata.sellingPrice,
+                        return InkWell(
+                          onTap: () {
+                            Get.to(
+                              () => ProductDescription(
+                                id: mydata.id,
+                                categoryId: mydata.categoryId,
+                                discountPercent: mydata.discountPercent,
+                                images: mydata.image,
+                                isBestSeller: mydata.isBestSeller,
+                                isFeatured: mydata.isFeatured,
+                                isNewArrival: mydata.isNewArrival,
+                                modifiers: mydata.modifiers,
+                                name: mydata.name,
+                                price: mydata.price,
+                                rating: mydata.rating,
+                                reviews: mydata.reviews,
+                                seller: mydata.seller,
+                                sellingPrice: mydata.sellingPrice,
+                                stock: mydata.stock,
+                                description: mydata.description,
+                                modifierType: mydata.modifierType,
+                                specification: mydata.specification,
+                              ),
+                            );
+                          },
+                          child: NewArrivalProductWidget(
+                            image: mydata.image,
+                            name: mydata.name,
+                            description: mydata.description,
+                            rating: mydata.rating,
+                            reviews: mydata.reviews,
+                            price: mydata.price,
+                            discountPercentage: mydata.discountPercent,
+                            sellingPrice: mydata.sellingPrice,
+                          ),
                         );
                       },
                     ),
