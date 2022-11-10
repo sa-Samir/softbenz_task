@@ -966,7 +966,7 @@ class HomeView extends StatelessWidget {
                                     isBestSeller: mydata.isBestSeller,
                                     isFeatured: mydata.isFeatured,
                                     isNewArrival: mydata.isNewArrival,
-                                    modifiers: mydata.modifiers!,
+                                    modifiers: mydata.modifiers,
                                     name: mydata.name,
                                     price: mydata.price,
                                     rating: mydata.rating,
