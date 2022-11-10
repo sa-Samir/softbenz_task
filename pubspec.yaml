@@ -28,8 +28,10 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   badges: ^2.0.3
+  carousel_slider: ^4.1.1
   colorful_safe_area: ^0.3.0
   cupertino_icons: ^1.0.2
+  favorite_button: ^0.0.4
   flutter:
     sdk: flutter
   flutter_countdown_timer: ^4.1.0

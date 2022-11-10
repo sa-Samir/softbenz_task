@@ -24,6 +24,9 @@ class ProductController extends GetxController {
       image: [
         'https://rukminim1.flixcart.com/image/416/416/kqqykcw0/mobile/j/5/7/galaxy-f22-sm-e225flbdins-samsung-original-imag4z99fp4qdfby.jpeg?q=70',
       ],
+      isFeatured: true,
+      isBestSeller: false,
+      isNewArrival: false,
     ),
     ProductModel(
       id: '2',
@@ -42,6 +45,9 @@ class ProductController extends GetxController {
         'https://rukminim1.flixcart.com/image/416/416/k5zn9u80/induction-cook-top/r/q/z/philips-phlps-2100-watt-induction-cooktop-black-original-imaf95d6gupffzr9.jpeg?q=70',
         'https://rukminim1.flixcart.com/image/416/416/k0lbdzk0pkrrdj/induction-cook-top-refurbished/a/3/r/na-u-hd4928-01-philips-original-imaf95d69puzxq3j.jpeg?q=70',
       ],
+      isFeatured: true,
+      isBestSeller: false,
+      isNewArrival: false,
     ),
     ProductModel(
       id: '3',
@@ -59,6 +65,9 @@ class ProductController extends GetxController {
       image: [
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy_XdUrWnIUFDUIGRz9JlK1Dh8uqybRllXmw&usqp=CAU',
       ],
+      isFeatured: true,
+      isBestSeller: false,
+      isNewArrival: false,
     ),
     ProductModel(
       id: '4',
@@ -77,6 +86,9 @@ class ProductController extends GetxController {
         'https://rukminim1.flixcart.com/image/416/416/l3t2fm80/sunscreen/o/a/x/-original-imageuhw5cyq69fj.jpeg?q=70',
         'https://rukminim1.flixcart.com/image/416/416/l3t2fm80/sunscreen/t/c/b/-original-imageuhwmwyrznz4.jpeg?q=70',
       ],
+      isFeatured: true,
+      isBestSeller: false,
+      isNewArrival: false,
     ),
     ProductModel(
       id: '5',
@@ -101,6 +113,9 @@ class ProductController extends GetxController {
         Modifiers(id: '4', label: '5'),
         Modifiers(id: '5', label: '6'),
       ],
+      isFeatured: true,
+      isBestSeller: false,
+      isNewArrival: true,
     ),
     ProductModel(
       id: '6',
@@ -116,6 +131,9 @@ class ProductController extends GetxController {
       description:
           'Sunglasses or sun glasses are a form of protective eyewear designed primarily to prevent bright sunlight and high-energy visible light from damaging',
       image: [],
+      isFeatured: false,
+      isBestSeller: false,
+      isNewArrival: true,
     ),
     ProductModel(
       id: '7',
@@ -133,6 +151,9 @@ class ProductController extends GetxController {
       image: [
         'https://media.thuprai.com/__sized__/front_covers/Ijoriya_by_subin_bhattarai_-f-thumbnail-280x405-70.jpg',
       ],
+      isFeatured: false,
+      isBestSeller: true,
+      isNewArrival: false,
     ),
     ProductModel(
       id: '8',
@@ -152,6 +173,9 @@ class ProductController extends GetxController {
         'https://rukminim1.flixcart.com/image/416/416/kk76wsw0/computer/j/6/i/lenovo-original-imafzhsyhmbgfbzy.jpeg?q=70',
         'https://rukminim1.flixcart.com/image/416/416/kk76wsw0/computer/q/e/t/lenovo-original-imafzhsyrgfvamgy.jpeg?q=70',
       ],
+      isFeatured: false,
+      isBestSeller: false,
+      isNewArrival: false,
     ),
     ProductModel(
       id: '9',
@@ -160,13 +184,16 @@ class ProductController extends GetxController {
       discountPercent: 0,
       sellingPrice: '24,499',
       categoryId: '6',
-      rating: 5,
+      rating: 3,
       reviews: 11,
       seller: 'Joseph Murphy',
       stock: 125,
       image: [
         'https://rukminim1.flixcart.com/image/416/416/klo27bk0/regionalbooks/l/x/e/the-power-of-your-subconscious-mind-original-imagyqtgj2yrk2wm.jpeg?q=70',
       ],
+      isFeatured: false,
+      isBestSeller: false,
+      isNewArrival: true,
     ),
     ProductModel(
       id: '10',
@@ -183,6 +210,9 @@ class ProductController extends GetxController {
         'https://rukminim1.flixcart.com/image/416/416/k0vbgy80/vacuum-cleaner/h/e/6/eureka-forbes-trendy-zip-original-imafkka7zzg8qr6w.jpeg?q=70',
         'https://rukminim1.flixcart.com/image/416/416/j4pwsy80-1/vacuum-cleaner/h/e/6/eureka-forbes-trendy-zip-original-imaevkhw3sng5shn.jpeg?q=70',
       ],
+      isFeatured: false,
+      isBestSeller: false,
+      isNewArrival: false,
     ),
     ProductModel(
       id: '11',
@@ -199,6 +229,9 @@ class ProductController extends GetxController {
         'https://rukminim1.flixcart.com/image/832/832/xif0q/jacket/r/l/j/m-1-no-dtaw21jk032c-ducati-original-imagjyfwfjknvvfd.jpeg?q=70',
         'https://rukminim1.flixcart.com/image/832/832/xif0q/jacket/z/h/a/s-ttjk000739-tokyo-talkies-original-imafyghajaenktnb-bb.jpeg?q=70',
       ],
+      isFeatured: false,
+      isBestSeller: true,
+      isNewArrival: true,
     ),
     ProductModel(
       id: '12',
@@ -208,19 +241,49 @@ class ProductController extends GetxController {
       sellingPrice: '1,299',
       categoryId: '5',
       rating: 5,
-      reviews: 5,
+      reviews: 27,
       seller: 'Levi Jeans',
       stock: 12,
       image: [
         'https://rukminim1.flixcart.com/image/416/416/k3xcdjk0/baby-carrier-cuddler/t/m/e/high-quality-baby-carrier-4-in-1-carry-bag-cuddler-kids-facing-original-imaf3vvphgzxhzsy.jpeg?q=70',
       ],
+      isFeatured: false,
+      isBestSeller: true,
+      isNewArrival: false,
     ),
   ].obs;
+
   var flashSaleProducts = <ProductModel>[].obs;
+  var featuredProducts = <ProductModel>[].obs;
+  var bestSellingProducts = <ProductModel>[].obs;
+  var newArrivalProducts = <ProductModel>[].obs;
+
+  void filterFlashSaleProducts() {
+    flashSaleProducts.value =
+        products.where((e) => e.discountPercent > 0).toList();
+  }
+
+  void filterFeaturedProducts() {
+    featuredProducts.value =
+        products.where((e) => e.isFeatured == true).toList();
+  }
+
+  void filterBestSellingProducts() {
+    bestSellingProducts.value =
+        products.where((e) => e.isBestSeller == true).toList();
+  }
+
+  void filterNewArrivalProducts() {
+    newArrivalProducts.value =
+        products.where((e) => e.isNewArrival == true).toList();
+  }
+
   @override
   void onInit() {
     super.onInit();
-    flashSaleProducts.value =
-        products.where((e) => e.discountPercent > 0).toList();
+    filterFlashSaleProducts();
+    filterFeaturedProducts();
+    filterBestSellingProducts();
+    filterNewArrivalProducts();
   }
 }

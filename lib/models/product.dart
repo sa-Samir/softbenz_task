@@ -15,6 +15,9 @@ class ProductModel {
     required this.stock,
     this.modifierType,
     this.modifiers,
+    required this.isFeatured,
+    required this.isBestSeller,
+    required this.isNewArrival,
   });
 
   String id;
@@ -32,6 +35,9 @@ class ProductModel {
   int stock;
   dynamic modifierType;
   List<Modifiers>? modifiers;
+  bool isFeatured;
+  bool isBestSeller;
+  bool isNewArrival;
 }
 
 class Modifiers {

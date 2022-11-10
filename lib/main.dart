@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primaryColor: Constants.pColor,
       ),
-      home: const HomeView(),
+      home: const AppBase(),
       initialBinding: ControllerBinding(),
     );
   }
