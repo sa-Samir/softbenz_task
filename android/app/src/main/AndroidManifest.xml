@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.softbenz_task">
    <application
-        android:label="softbenz_task"
+        android:label="Mahuri"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

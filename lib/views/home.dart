@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/current_remaining_time.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:get/get.dart';
+import 'package:searchfield/searchfield.dart';
 import 'package:softbenz_task/components/best_seller_widget.dart';
 import 'package:softbenz_task/components/feature_widget.dart';
 import 'package:softbenz_task/components/new_arrival_widget.dart';
 import 'package:softbenz_task/controllers/category.dart';
 import 'package:softbenz_task/controllers/product.dart';
+import 'package:softbenz_task/models/product.dart';
 import 'package:softbenz_task/utils/constants.dart';
 import 'package:softbenz_task/views/product/description.dart';
 import 'package:softbenz_task/views/product/featured_products.dart';
@@ -33,6 +35,7 @@ class AppBase extends StatelessWidget {
       const MyAccountScreen(),
     ];
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -81,13 +84,25 @@ class AppBase extends StatelessWidget {
                       onPressed: () {
                         selectedScreen.value = 1;
                       },
-                      icon: const Icon(
-                        Icons.favorite_outline,
-                        size: 18,
+                      icon: Badge(
+                        badgeContent: const Text(
+                          '8',
+                          style: TextStyle(
+                            fontSize: 8,
+                            color: Colors.white,
+                          ),
+                        ),
+                        badgeColor: Constants.pColor,
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.favorite_outline,
+                          size: 18,
+                        ),
                       ),
                     ),
                     const Text(
-                      'Favourites',
+                      'My Favourites',
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -127,9 +142,21 @@ class AppBase extends StatelessWidget {
                       onPressed: () {
                         selectedScreen.value = 3;
                       },
-                      icon: const Icon(
-                        Icons.shopping_bag_outlined,
-                        size: 18,
+                      icon: Badge(
+                        badgeContent: const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 8,
+                            color: Colors.white,
+                          ),
+                        ),
+                        badgeColor: Constants.pColor,
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.shopping_bag_outlined,
+                          size: 18,
+                        ),
                       ),
                     ),
                     const Text(
@@ -248,9 +275,8 @@ class HomeView extends StatelessWidget {
                     child: SizedBox(
                       width: 300,
                       child: Card(
-                        elevation: 1.5,
-                        child: TextFormField(
-                          decoration: InputDecoration(
+                        child: SearchField(
+                          searchInputDecoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                               borderSide: BorderSide(
@@ -272,16 +298,64 @@ class HomeView extends StatelessWidget {
                               fontSize: 12,
                               fontWeight: FontWeight.normal,
                             ),
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                debugPrint('Search');
-                              },
-                              icon: const Icon(
-                                Icons.search,
-                                size: 22,
-                              ),
+                            suffixIcon: const Icon(
+                              Icons.search_outlined,
+                              size: 18,
                             ),
                           ),
+                          maxSuggestionsInViewPort: 4,
+                          itemHeight: 80,
+                          onSuggestionTap:
+                              (SearchFieldListItem<ProductModel> e) {
+                            Get.to(() => ProductDescription(
+                                  id: e.item!.id,
+                                  categoryId: e.item!.categoryId,
+                                  discountPercent: e.item!.discountPercent,
+                                  images: e.item!.image,
+                                  isBestSeller: e.item!.isBestSeller,
+                                  isFeatured: e.item!.isFeatured,
+                                  isNewArrival: e.item!.isNewArrival,
+                                  modifiers: e.item!.modifiers,
+                                  name: e.item!.name,
+                                  price: e.item!.price,
+                                  rating: e.item!.rating,
+                                  reviews: e.item!.reviews,
+                                  seller: e.item!.seller,
+                                  sellingPrice: e.item!.sellingPrice,
+                                  stock: e.item!.stock,
+                                  description: e.item!.description,
+                                  modifierType: e.item!.modifierType,
+                                  specification: e.item!.specification,
+                                ));
+                          },
+                          suggestions: productController.products.map((e) {
+                            return SearchFieldListItem(
+                              e.name,
+                              item: e,
+                              child: ListTile(
+                                contentPadding: const EdgeInsets.all(8),
+                                leading: e.image.isEmpty
+                                    ? CircleAvatar(
+                                        backgroundColor: Constants.pColor,
+                                      )
+                                    : CircleAvatar(
+                                        backgroundColor: Constants.pColor,
+                                        backgroundImage: NetworkImage(
+                                          e.image[0],
+                                        ),
+                                      ),
+                                title: Text(
+                                  e.name,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                subtitle: Text(e.seller),
+                              ),
+                            );
+                          }).toList(),
                         ),
                       ),
                     ),
@@ -889,7 +963,7 @@ class HomeView extends StatelessWidget {
                     ),
 
                     const SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
 
                     // * Features
@@ -930,7 +1004,7 @@ class HomeView extends StatelessWidget {
                     ),
 
                     const SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
 
                     // * Featured Products Title

@@ -35,7 +35,6 @@ class NewArrivalProductWidget extends StatelessWidget {
             color: Colors.grey.shade200,
           ),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(
                 flex: 1,
