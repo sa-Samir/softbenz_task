@@ -31,6 +31,7 @@ dependencies:
   carousel_slider: ^4.1.1
   colorful_safe_area: ^0.3.0
   cupertino_icons: ^1.0.2
+  dots_indicator: ^2.1.0
   favorite_button: ^0.0.4
   flutter:
     sdk: flutter
