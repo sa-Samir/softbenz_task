@@ -8,6 +8,7 @@ import 'package:group_button/group_button.dart';
 import 'package:softbenz_task/models/product.dart';
 import 'package:softbenz_task/services/notification_service.dart';
 import 'package:softbenz_task/utils/constants.dart';
+import 'package:softbenz_task/views/product/image.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 class ProductDescription extends StatefulWidget {
@@ -138,14 +139,24 @@ class _ProductDescriptionState extends State<ProductDescription> {
                                             builder: (BuildContext context) {
                                               return Stack(
                                                 children: [
-                                                  Container(
-                                                    height: 250,
-                                                    width: 250,
-                                                    padding:
-                                                        const EdgeInsets.all(5),
-                                                    child: Image.network(
-                                                      e,
-                                                      fit: BoxFit.contain,
+                                                  InkWell(
+                                                    onTap: () {
+                                                      Get.to(() =>
+                                                          ViewImageScreen(
+                                                              imageTitle:
+                                                                  widget.name,
+                                                              imageURL: e));
+                                                    },
+                                                    child: Container(
+                                                      height: 250,
+                                                      width: 250,
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              5),
+                                                      child: Image.network(
+                                                        e,
+                                                        fit: BoxFit.contain,
+                                                      ),
                                                     ),
                                                   ),
                                                   Positioned(

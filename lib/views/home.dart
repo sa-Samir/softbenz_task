@@ -1,20 +1,22 @@
 import 'package:badges/badges.dart';
-import 'package:favorite_button/favorite_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/current_remaining_time.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:get/get.dart';
 import 'package:searchfield/searchfield.dart';
-import 'package:softbenz_task/components/best_seller_widget.dart';
-import 'package:softbenz_task/components/feature_widget.dart';
-import 'package:softbenz_task/components/new_arrival_widget.dart';
+import 'package:softbenz_task/widgets/banner_widget.dart';
+import 'package:softbenz_task/widgets/best_seller_widget.dart';
+import 'package:softbenz_task/widgets/feature_widget.dart';
+import 'package:softbenz_task/widgets/featured_product_widget.dart';
+import 'package:softbenz_task/widgets/flash_sale_widget.dart';
+import 'package:softbenz_task/widgets/new_arrival_widget.dart';
 import 'package:softbenz_task/controllers/category.dart';
 import 'package:softbenz_task/controllers/product.dart';
 import 'package:softbenz_task/models/product.dart';
 import 'package:softbenz_task/utils/constants.dart';
 import 'package:softbenz_task/views/product/description.dart';
 import 'package:softbenz_task/views/product/featured_products.dart';
+import 'package:softbenz_task/views/product/new_arrival.dart';
 import 'package:softbenz_task/views/product/products_by_category.dart';
 import 'package:softbenz_task/views/user/account.dart';
 import 'package:softbenz_task/views/user/cart.dart';
@@ -374,17 +376,7 @@ class HomeView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // * Banner
-                    ClipRRect(
-                      clipBehavior: Clip.antiAlias,
-                      borderRadius: BorderRadius.circular(12),
-                      child: SizedBox(
-                        height: 200,
-                        child: Image.asset(
-                          'assets/images/banner.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                    const CustomBanner(imageName: 'banner.png'),
 
                     const SizedBox(
                       height: 20,
@@ -543,131 +535,12 @@ class HomeView extends StatelessWidget {
                                       specification: mydata.specification,
                                     ));
                               },
-                              child: Card(
-                                elevation: .75,
-                                child: Column(
-                                  children: [
-                                    Container(),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Column(
-                                        children: [
-                                          Stack(
-                                            alignment: Alignment.center,
-                                            children: [
-                                              // * The red circle at the center
-                                              SizedBox(
-                                                height: 90,
-                                                child: Center(
-                                                  child: CircleAvatar(
-                                                    radius: 30,
-                                                    backgroundColor:
-                                                        Colors.red.shade300,
-                                                  ),
-                                                ),
-                                              ),
-
-                                              // * Product Image
-                                              // ! Image backgrounds are not transparent
-                                              Positioned(
-                                                child: SizedBox(
-                                                  height: 50,
-                                                  width: 50,
-                                                  child: mydata.image.isEmpty
-                                                      ? const Center(
-                                                          child: Text(
-                                                            'No Image',
-                                                            style: TextStyle(
-                                                              fontSize: 10,
-                                                            ),
-                                                          ),
-                                                        )
-                                                      : Image.network(
-                                                          mydata.image[0],
-                                                          fit: BoxFit.contain,
-                                                        ),
-                                                ),
-                                              ),
-
-                                              // * Discount Percentage Ribbon
-                                              Positioned(
-                                                top: 0,
-                                                right: 0,
-                                                child: Container(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(horizontal: 5),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.red.shade900,
-                                                    borderRadius:
-                                                        const BorderRadius
-                                                            .horizontal(
-                                                      left: Radius.circular(4),
-                                                    ),
-                                                  ),
-                                                  child: Row(
-                                                    children: [
-                                                      Text(
-                                                        '${mydata.discountPercent}',
-                                                        style: const TextStyle(
-                                                          fontSize: 10,
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                      const Text(
-                                                        '% off',
-                                                        style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Text(
-                                            mydata.name,
-                                            style: const TextStyle(
-                                              fontSize: 10,
-                                              height: 1.1,
-                                            ),
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                'Rs.${mydata.price}',
-                                                style: const TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.bold,
-                                                  decoration: TextDecoration
-                                                      .lineThrough,
-                                                  decorationColor: Colors.red,
-                                                  decorationThickness: 2,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                'Rs.${mydata.sellingPrice}',
-                                                style: const TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.red,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              child: FlashSaleWidget(
+                                name: mydata.name,
+                                price: mydata.price,
+                                discountPercent: mydata.discountPercent,
+                                sellingPrice: mydata.sellingPrice,
+                                image: mydata.image,
                               ),
                             ),
                           );
@@ -750,196 +623,13 @@ class HomeView extends StatelessWidget {
                                   specification: mydata.specification,
                                 ));
                           },
-                          child: Card(
-                            color: Colors.grey.shade200,
-                            elevation: 0,
-                            child: Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                // * Product Image
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        height: 105,
-                                        width: 200,
-                                        padding: const EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          color: Colors.white,
-                                        ),
-                                        child: Center(
-                                          child: mydata.image.isEmpty
-                                              ? const Center(
-                                                  child: Text(
-                                                    'No Image',
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                    ),
-                                                  ),
-                                                )
-                                              : Image.network(
-                                                  mydata.image[0],
-                                                ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        mydata.name,
-                                        style: const TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          height: 1.1,
-                                        ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      Text(
-                                        mydata.seller,
-                                        style: const TextStyle(
-                                          fontSize: 10,
-                                        ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      mydata.discountPercent > 0
-                                          ? Row(
-                                              children: [
-                                                Text(
-                                                  'Rs.${mydata.price}',
-                                                  style: const TextStyle(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.bold,
-                                                    decoration: TextDecoration
-                                                        .lineThrough,
-                                                    decorationColor: Colors.red,
-                                                    decorationThickness: 2,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  'Rs.${mydata.sellingPrice}',
-                                                  style: const TextStyle(
-                                                    fontSize: 10,
-                                                    color: Colors.red,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          : Text(
-                                              'Rs.${mydata.sellingPrice}',
-                                              style: const TextStyle(
-                                                fontSize: 10,
-                                                color: Colors.red,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                    ],
-                                  ),
-                                ),
-
-                                // * Favourite Button
-                                Positioned(
-                                  top: 15,
-                                  right: 15,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: Colors.grey.shade200,
-                                    ),
-                                    padding: const EdgeInsets.all(4),
-                                    child: FavoriteButton(
-                                      isFavorite: false,
-                                      valueChanged: (value) {
-                                        debugPrint('Added to facourites');
-                                      },
-                                      iconSize: 28,
-                                      iconColor: Constants.pColor,
-                                      iconDisabledColor: Colors.black38,
-                                    ),
-                                  ),
-                                ),
-
-                                //  * Call Button
-                                Positioned(
-                                  bottom: 65,
-                                  right: 15,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: Colors.grey.shade200,
-                                    ),
-                                    child: IconButton(
-                                      tooltip: 'Call ${mydata.seller}',
-                                      onPressed: () {},
-                                      padding: const EdgeInsets.all(2),
-                                      constraints: const BoxConstraints(),
-                                      icon: const Icon(
-                                        CupertinoIcons.phone,
-                                        size: 18,
-                                      ),
-                                      color: Constants.pColor,
-                                    ),
-                                  ),
-                                ),
-
-                                // * Refresh/Sync Button
-                                Positioned(
-                                  top: 15,
-                                  left: 15,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: Colors.grey.shade200,
-                                    ),
-                                    child: IconButton(
-                                      tooltip: 'Refresh/Sync',
-                                      onPressed: () {},
-                                      padding: const EdgeInsets.all(2),
-                                      constraints: const BoxConstraints(),
-                                      icon: const Icon(
-                                        Icons.sync,
-                                        size: 18,
-                                      ),
-                                      color: Constants.pColor,
-                                    ),
-                                  ),
-                                ),
-
-                                // * Add to cart button
-                                Positioned(
-                                  bottom: -2,
-                                  right: -2,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      color: Constants.pColor,
-                                    ),
-                                    child: IconButton(
-                                      tooltip: 'Add to Cart',
-                                      constraints: const BoxConstraints(),
-                                      padding: const EdgeInsets.all(2),
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.add,
-                                        size: 18,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          child: FeaturedProductWidget(
+                            name: mydata.name,
+                            price: mydata.price,
+                            discountPercent: mydata.discountPercent,
+                            sellingPrice: mydata.sellingPrice,
+                            image: mydata.image,
+                            seller: mydata.seller,
                           ),
                         );
                       },
@@ -950,17 +640,7 @@ class HomeView extends StatelessWidget {
                     ),
 
                     // * Second Banner
-                    ClipRRect(
-                      clipBehavior: Clip.antiAlias,
-                      borderRadius: BorderRadius.circular(12),
-                      child: SizedBox(
-                        height: 200,
-                        child: Image.asset(
-                          'assets/images/banner_2.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                    const CustomBanner(imageName: 'banner_2.png'),
 
                     const SizedBox(
                       height: 30,
@@ -1071,17 +751,7 @@ class HomeView extends StatelessWidget {
                     ),
 
                     // * Third Banner
-                    ClipRRect(
-                      clipBehavior: Clip.antiAlias,
-                      borderRadius: BorderRadius.circular(12),
-                      child: SizedBox(
-                        height: 200,
-                        child: Image.asset(
-                          'assets/images/banner_3.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                    const CustomBanner(imageName: 'banner_3.png'),
 
                     const SizedBox(
                       height: 20,
@@ -1105,7 +775,7 @@ class HomeView extends StatelessWidget {
                           ),
                           height: 30,
                           onPressed: () {
-                            Get.to(() => const FeaturedProductScreen());
+                            Get.to(() => const NewArrivalScreen());
                           },
                           child: const Text(
                             'See All',
